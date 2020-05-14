@@ -1,16 +1,24 @@
-@(items: List[tables.T_User])
+@import play.mvc.Http.Request
+@import models.find.Receipt;
+@(items: List[tables.T_User], form: Form[Receipt])
+
 
 @views.html.main("一覧") {
 <div class="container">
   <div class="row">
     <div class="page-header">
-      <div class="input-group col-sm-4">
-        <input type="text" class="form-control" placeholder="名前">
-        <a class="btn input-group-addon">
-          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-          検索
-        </a>
+    @helper.form(action = routes.Application.index) {
+        <div class="input-group col-sm-4">
+        <input type="text" class="form-control" placeholder="名前" name="input" value="@form("input").value">
+
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-default">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            検索
+          </button>
+        </span>
       </div>
+    }
     </div>
     <div>
       <table class="table table-bordered table-striped">

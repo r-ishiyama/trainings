@@ -1,9 +1,13 @@
 package tables;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
+import io.ebean.*;
+
 
 @Entity
 public class T_User extends BaseTable {

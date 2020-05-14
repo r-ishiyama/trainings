@@ -2,13 +2,19 @@ package controllers;
 
 import javax.inject.Singleton;
 
+
 import io.ebean.Finder;
 
-import java.util.List;
-import play.mvc.Controller;
-import play.mvc.Result;
+import play.data.Form;
+import play.data.FormFactory;
 
-import tables.T_User;
+import java.util.List;
+import play.mvc.*;
+
+import tables.*;
+import models.find.Receipt;
+
+import com.google.inject.Inject;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -23,10 +29,19 @@ public class Application extends Controller {
      * this method will be called when the application receives a
      * <code>GET</code> request with a path of <code>/</code>.
      */
-  public Result index() {
-    Finder<Long, T_User> finder = new Finder<Long, T_User>(T_User.class);
-    List<T_User> items = finder.all();
-    return ok(views.html.index.render(items));
-  }
 
+
+  @Inject
+  FormFactory formFactory;
+
+
+
+  public Result index(Http.Request request) {
+    Form<Receipt> f = formFactory.form(Receipt.class).bindFromRequest(request);
+    Receipt r = f.get();
+
+    List<T_User> items = Repositry.find(r.input);
+
+    return ok(views.html.index.render(items, f));
+  }
 }
