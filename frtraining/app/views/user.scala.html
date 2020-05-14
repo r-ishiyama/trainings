@@ -1,0 +1,21 @@
+@import play.mvc.Http.Request
+@views.html.main("一覧") {
+<h1>Hello(^^</h1>
+
+
+<div class="container">
+  <div class="row">
+  @helper.form(action = routes.UserController.create) {
+    <div class="col-lg-12">
+      <input type="hidden" name="id">
+      <input type="text" class="form-control" placeholder="名前" name="name">
+      <input type="text" class="form-control" placeholder="学年" name="schoolYear">
+      <input type="text" class="form-control" placeholder="誕生日" name="birthDay">
+      <input type="text" class="form-control" placeholder="身長" name="height">
+      <input type="text" class="form-control" placeholder="好きな食べ物" name="food">
+      <input type="submit" class="btn btn-primary" value="登録" />
+    </div>
+  }
+  </div>
+</div>
+}
