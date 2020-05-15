@@ -7,3 +7,6 @@ GET     /                           controllers.Application.index(request: Reque
 
 GET     /user                       controllers.UserController.init(request: Request)
 GET     /user/submit                       controllers.UserController.create(request: Request)
+GET     /user/:id                   controllers.UserController.edit(request: Request, id: Long)
+GET     /user/:id/update                       controllers.UserController.update(request: Request, id: Long)
+GET     /user/:id/delete                       controllers.UserController.delete(request: Request, id: Long)

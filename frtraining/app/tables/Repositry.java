@@ -17,17 +17,43 @@ public class Repositry {
     }
   }
 
-  T_User newUser = new T_User();
-
-
+  public static List<T_User> find(Long id) {
+    return finder.query().where().eq("id",  id).findList();
+  }
 
   public void add(Receipt in) {
-    this.newUser.name = in.name;
-    this.newUser.schoolYear = in.schoolYear;
-    this.newUser.birthDay = in.birthDay;
-    this.newUser.height = in.height;
-    this.newUser.food = in.food;
+    T_User newUser = new T_User();
+    newUser.name = in.name;
+    newUser.schoolYear = in.schoolYear;
+    newUser.birthDay = in.birthDay;
+    newUser.height = in.height;
+    newUser.food = in.food;
     newUser.save();
+  }
+
+  public void update(Receipt in) {
+    T_User updatedUser = find(in.id).get(0);
+    if (in.name != null) {
+      updatedUser.name = in.name;
+    }
+    if (in.schoolYear != null) {
+      updatedUser.schoolYear = in.schoolYear;
+    }
+    if (in.birthDay != null) {
+      updatedUser.birthDay = in.birthDay;
+    }
+    if (in.height != null) {
+      updatedUser.height = in.height;
+    }
+    if (in.food != null) {
+      updatedUser.food = in.food;
+    }
+    updatedUser.save();
+  }
+
+  public void delete(Long id) {
+    T_User deletedUser = find(id).get(0);
+    deletedUser.delete();
   }
 }
 

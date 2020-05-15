@@ -20,7 +20,7 @@
       <a class="btn btn-primary pull-right" href="@routes.UserController.init">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             新規作成
-          </a>
+      </a>
       </div>
     }
     </div>
@@ -36,6 +36,7 @@
             <th>好きな食べ物</th>
             <th>作成日時</th>
             <th>更新日時</th>
+            <th>操作</th>
           </tr>
         </thead>
         <tbody>
@@ -50,6 +51,9 @@
             <td>@item.food</td>
             <td>@item.createdAt</td>
             <td>@item.updatedAt</td>
+            <td>
+              <a class="btn btn-success" href="@routes.UserController.edit(item.id)">編集</a>
+            </td>
           </tr>
           }
 
