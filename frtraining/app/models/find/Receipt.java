@@ -6,7 +6,7 @@ public class Receipt {
   public Long id;
   public String name;
   public Integer schoolYear;
-  public Date birthDay;
+  public String birthDay;
   public Integer height;
   public String food;
 }

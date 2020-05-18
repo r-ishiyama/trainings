@@ -1,4 +1,5 @@
 @import play.mvc.Http.Request
+@import java.util.Date
 @import models.find.Receipt;
 @(items: List[tables.T_User], form: Form[Receipt])
 
@@ -47,10 +48,10 @@
             <td>@item.name</td>
             <td>@item.schoolYear</td>
             <td>@item.height</td>
-            <td>@item.birthDay</td>
+            <td>@("%tY/%<tm/%<td %<tH:%<tM" format item.birthDay)</td>
             <td>@item.food</td>
-            <td>@item.createdAt</td>
-            <td>@item.updatedAt</td>
+            <td>@("%tY/%<tm/%<td %<tH:%<tM" format item.createdAt)</td>
+            <td>@("%tY/%<tm/%<td %<tH:%<tM" format item.updatedAt)</td>
             <td>
               <a class="btn btn-success" href="@routes.UserController.edit(item.id)">編集</a>
             </td>

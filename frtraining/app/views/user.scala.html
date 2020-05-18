@@ -1,4 +1,5 @@
 @import play.mvc.Http.Request
+@import java.util.Date
 @(item: tables.T_User, isEmp: Boolean)
 @action = @{
   if(isEmp) {
@@ -24,8 +25,8 @@
       <input type="text" class="form-control" placeholder="名前" name="name" value="@item.name">
       <label for="schoolYear">学年</label>
       <input type="text" class="form-control" placeholder="学年" name="schoolYear" value="@item.schoolYear">
-      <label for="birthDay">誕生日</label>
-      <input type="text" class="form-control" placeholder="誕生日" name="birthDay" value="@item.birthDay">
+      <label for="birthDay">誕生日(yyyy/mm/dd)</label>
+      <input type="text" class="form-control" placeholder="yyyy/mm/dd" name="birthDay" value="@{if(item.birthDay != null){"%tY/%<tm/%<td" format item.birthDay}}">
       <label for="height">身長</label>
       <input type="text" class="form-control" placeholder="身長" name="height" value="@item.height">
       <label for="food">好きな食べ物</label>

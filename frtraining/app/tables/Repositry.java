@@ -1,6 +1,8 @@
 package tables;
 
 import java.util.*;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import tables.T_User;
 import play.db.ebean.*;
 import io.ebean.*;
@@ -21,11 +23,23 @@ public class Repositry {
     return finder.query().where().eq("id",  id).findList();
   }
 
+  public Date strToDate(String s){
+    SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/mm/dd");
+    try {
+      Date d =sdFormat.parse(s);
+      return d;
+    } catch (ParseException e) {
+      e.printStackTrace();
+      return null;
+    }
+
+  }
+
   public void add(Receipt in) {
     T_User newUser = new T_User();
     newUser.name = in.name;
     newUser.schoolYear = in.schoolYear;
-    newUser.birthDay = in.birthDay;
+    newUser.birthDay = strToDate(in.birthDay);
     newUser.height = in.height;
     newUser.food = in.food;
     newUser.save();
@@ -40,7 +54,7 @@ public class Repositry {
       updatedUser.schoolYear = in.schoolYear;
     }
     if (in.birthDay != null) {
-      updatedUser.birthDay = in.birthDay;
+      updatedUser.birthDay = strToDate(in.birthDay);
     }
     if (in.height != null) {
       updatedUser.height = in.height;
