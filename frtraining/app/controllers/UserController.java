@@ -31,8 +31,11 @@ public class UserController extends Controller {
       return badRequest(views.html.user.render(t,isEmp));
     }
     Receipt r = f.get();
+    if(r.name.isEmpty() || item.strToDate(r.birthDay) == null) {
+      return badRequest(views.html.user.render(t,isEmp));
+    }
     this.item.add(r);
-    return ok(views.html.user.render(t,isEmp));
+    return redirect(routes.Application.index());
   }
 
   public Result edit(Http.Request request, Long id) {
@@ -53,13 +56,16 @@ public class UserController extends Controller {
     isEmp = false;
     Form<Receipt> f = formFactory.form(Receipt.class).bindFromRequest(request);
     if (f.hasErrors()) {
-      return badRequest(views.html.user.render(t,isEmp));
+      return redirect(routes.UserController.edit(id));
     }
     Receipt r = f.get();
     r.id = id;
+    if(r.name.isEmpty() || item.strToDate(r.birthDay) == null) {
+      return redirect(routes.UserController.edit(id));
+    }
     this.item.update(r);
     t = item.find(id).get(0);
-    return ok(views.html.user.render(t,isEmp));
+    return redirect(routes.Application.index());
   }
 
   public Result delete(Http.Request request, Long id){
