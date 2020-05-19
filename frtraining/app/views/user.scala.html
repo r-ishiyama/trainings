@@ -30,7 +30,7 @@
       <label for="height">身長</label>
       <input type="text" class="form-control" placeholder="身長" name="height" value="@item.height">
       <label for="food">好きな食べ物</label>
-      <input type="text" class="form-control" placeholder="好きな食べ物" name="food" value="@item.food">
+      <textarea type="text" class="form-control" placeholder="好きな食べ物" name="food" >@item.food</textarea>
       @if(isEmp) {
       <input type="submit" class="btn btn-primary" value="登録" />
       } else {
