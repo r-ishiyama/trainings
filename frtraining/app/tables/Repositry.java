@@ -24,7 +24,7 @@ public class Repositry {
   }
 
   public Date strToDate(String s){
-    SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/mm/dd");
+    SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd");
     try {
       Date d =sdFormat.parse(s);
       return d;
@@ -70,4 +70,3 @@ public class Repositry {
     deletedUser.delete();
   }
 }
-
